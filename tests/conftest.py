@@ -1,6 +1,8 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.chrome.service import Service as FirefoxService
 import pytest
 import requests
 from data import URL, Endpoint
@@ -8,14 +10,22 @@ import random
 import string
 
 
-def get_driver():
-    service = ChromeService(executable_path=ChromeDriverManager().install())
-    return webdriver.Chrome(service=service)
+def get_driver(name):
+    if name == 'Chrome':
+        service = ChromeService(executable_path=ChromeDriverManager().install())
+        return webdriver.Chrome(service=service)
+    elif name == 'Firefox':
+        service = FirefoxService(executable_path=GeckoDriverManager().install())
+        return webdriver.Firefox(service=service)
+    else:
+        raise TypeError('Driver is not found')
 
 
-@pytest.fixture
-def web_driver():
-    driver = get_driver()
+
+
+@pytest.fixture(params=['Chrome', 'Firefox'])
+def web_driver(request):
+    driver = get_driver(request.param)
     driver.maximize_window()
     driver.get(URL)
     yield driver
