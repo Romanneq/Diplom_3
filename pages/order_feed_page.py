@@ -10,34 +10,32 @@ class OrderFeed(BasePage):  # Создали класс ленты заказо�
 
     @allure.step('Метод отображения ленты заказов')
     def wait_order_feed_page(self):
-        return BasePage.wait_element_page(self, OrderFeedElements.form_order_feed)
+        return BasePage.wait_element_page(self, OrderFeedElements.FORM_ORDER_FEED)
 
     @allure.step('Метод отображения id заказа в разделе: в работе')
     def re_wait_id_order_in_order_feed_page(self):
-        return BasePage.re_wait_element_page(self, OrderFeedElements.sect_in_progress, 'Все текущие заказы готовы!')
+        return BasePage.re_wait_element_page(self, OrderFeedElements.SECT_IN_PROGRESS, 'Все текущие заказы готовы!')
 
     @allure.step('Метод клика на первый заказ в ленте заказов')
     def click_first_order_on_order_feed_page(self):
-        return BasePage.click_element_page(self, OrderFeedElements.first_ord)
+        return BasePage.click_element_page(self, OrderFeedElements.FIRST_ORD)
 
     @allure.step('Метод отображения окна с деталями заказа')
     def wait_window_with_details_order_on_order_feed_page(self):
-        return BasePage.wait_element_page(self, OrderFeedElements.wind_details_ord)
+        return BasePage.wait_element_page(self, OrderFeedElements.WIND_DETAILS_ORD)
 
     @allure.step('Метод возврата id заказа в ленте заказов')
     def return_id_order_in_order_feed_page(self):
-        return BasePage.base_text_element(self, OrderFeedElements.last_id_ord)
+        return BasePage.base_text_element(self, OrderFeedElements.LAST_ID_ORD)
 
     @allure.step('Метод возврата счетчика заказов за все время')
     def return_counter_orders_all_time_in_order_feed_page(self):
-        return BasePage.base_text_element(self, OrderFeedElements.comp_all_time)
+        return BasePage.base_text_element(self, OrderFeedElements.COMP_ALL_TIME)
 
     @allure.step('Метод возврата счетчика заказов за сегодня')
     def return_counter_orders_today_in_order_feed_page(self):
-        return BasePage.base_text_element(self, OrderFeedElements.comp_today)
+        return BasePage.base_text_element(self, OrderFeedElements.COMP_TODAY)
 
     @allure.step('Метод возврата номера заказа в разделе в работе')
     def return_id_order_section_in_progress_in_order_feed_page(self):
-        return BasePage.base_text_element(self, OrderFeedElements.sect_in_progress)
-
-
+        return BasePage.base_text_element(self, OrderFeedElements.SECT_IN_PROGRESS)
